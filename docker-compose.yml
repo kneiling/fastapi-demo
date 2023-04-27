@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  demo-app:
+    build: .
+    volumes:
+      - type: bind
+        source: .
+        target: /src
+    ports:
+      - 3001:3000
+    environment:
+      - name=value
+    depends_on:
+      - demo-db
+
+  demo-db:
+    image: postgres:14
+    volumes:
+      - demo-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=demo-db
+      - POSTGRES_SERVER=demo-db
+    ports:
+      - 3002:5432
+
+volumes:
+  demo-data:

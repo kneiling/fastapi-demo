@@ -1,0 +1,27 @@
+# restclient
+
+:url = http://localhost:3001
+:api = api/v1
+
+:headers = <<
+Content-Type: application/json
+#
+
+
+# root
+GET :url
+
+
+# create site
+POST :url/:api/sites
+:headers
+{
+	"name": "Sample Site",
+	"multiplier": 1
+}
+#
+
+# update site
+PUT :url/:api/sites/1
+:headers
+{"multiplier": 3}
